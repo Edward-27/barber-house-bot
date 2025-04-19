@@ -70,6 +70,6 @@ app.post('/webhook', (req, res) => {
   res.send({ reply: resposta });
 });
 
-app.listen(3000, () => {
-  console.log('Bot rodando na porta 3000 🚀');
+app.listen(PORT, () => {
+  console.log(`Bot rodando na porta ${PORT} 🚀`);
 });
