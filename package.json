@@ -1,0 +1,12 @@
+{
+  "name": "barber-house-bot",
+  "version": "1.0.0",
+  "description": "Chatbot para agendamento de horários na Barber House via WhatsApp",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
