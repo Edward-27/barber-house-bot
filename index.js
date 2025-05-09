@@ -1,4 +1,4 @@
-// ✅ Bot Barber House - compatível com Z-API
+// ✅ Bot Barber House - compatível com Z-API com log detalhado
 const express = require('express');
 const axios = require('axios');
 const fs = require('fs');
@@ -10,7 +10,7 @@ let etapaCliente = {};
 // ROTA de recebimento do webhook da Z-API
 app.post('/webhook', async (req, res) => {
   try {
-    console.log("Mensagem recebida:", req.body);
+    console.log("Webhook recebido:", JSON.stringify(req.body, null, 2));
 
     const mensagem = req.body.text?.message;
     const numero = req.body.phone;
@@ -78,7 +78,7 @@ app.post('/webhook', async (req, res) => {
     }
 
     // Envia resposta para o cliente via Z-API
-    await axios.post('https://api.z-api.io/instances/3E0F190D0FF7D05DD42696870211A73F/token/E9B4130908ADE432C458BAD2/send-message', {
+    await axios.post('https://api.z-api.io/instances/YOUR_INSTANCE_ID/token/YOUR_TOKEN/send-message', {
       phone: numero,
       message: resposta
     });
