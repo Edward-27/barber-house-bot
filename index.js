@@ -5,7 +5,8 @@ app.use(express.json());
 
 let etapaCliente = {}; // controle de etapas da conversa por número de telefone
 
-app.post('/webhook', (req, res) => {
+app.post('/', (req, res) => {
+  console.log("Webhook recebido:", req.body);
   const mensagem = req.body.message;
   const numero = req.body.phone;
 
@@ -71,7 +72,6 @@ app.post('/webhook', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`Bot rodando na porta ${PORT} 🚀`);
 });
