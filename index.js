@@ -5,10 +5,23 @@ app.use(express.json());
 
 let etapaCliente = {}; // controle de etapas da conversa por número de telefone
 
-app.post('/', (req, res) => {
-  console.log("Webhook recebido:", req.body);
-  const mensagem = req.body.message;
+const axios = require('axios');
+
+app.post('/webhook', async (req, res) => {
+  const mensagem = req.body.text.message;
   const numero = req.body.phone;
+
+  // Lógica para processar a mensagem e gerar uma resposta
+  const resposta = 'Obrigado por entrar em contato!';
+
+  // Enviar a resposta utilizando a API da Z-API
+  await axios.post('https://api.z-api.io/instances/3E0F190D0FF7D05DD42696870211A73F/token/E9B4130908ADE432C458BAD2/send-message', {
+    phone: numero,
+    message: resposta
+  });
+
+  res.sendStatus(200);
+});
 
   let resposta = '';
 
