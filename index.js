@@ -14,6 +14,7 @@ app.post('/webhook', async (req, res) => {
 
     const mensagem = req.body.text?.message;
     const numero = req.body.phone;
+    const mesageId = req.body.messageId;
 
     if (!mensagem || !numero) {
       return res.sendStatus(400);
