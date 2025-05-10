@@ -14,7 +14,7 @@ app.post('/webhook', async (req, res) => {
 
     const mensagem = req.body.text?.message;
     const numero = req.body.phone;
-    const mesageId = req.body.messageId;
+    const messageId = req.body.messageId;
 
     if (!mensagem || !numero) {
       return res.sendStatus(400);
@@ -84,7 +84,8 @@ const token = process.env.TOKEN;
 
 await axios.post(`https://api.z-api.io/instances/${instanceId}/token/${token}/send-message`, {
   phone: numero,
-  message: resposta
+  message: resposta,
+  messageId: messageId
 });
 
     res.sendStatus(200);
