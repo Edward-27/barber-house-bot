@@ -81,7 +81,7 @@ app.post('/webhook', async (req, res) => {
 const instanceId = process.env.IDINSTANCE;
 const token = process.env.TOKEN;
 
-await axios.post("https://api.z-api.io/instances/${instanceId}/token/${token}/send-message", {
+await axios.post(`https://api.z-api.io/instances/${instanceId}/token/${token}/send-message`, {
   phone: numero,
   message: resposta
 });
