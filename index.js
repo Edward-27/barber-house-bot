@@ -13,7 +13,8 @@ app.post('/webhook', async (req, res) => {
     console.log("Webhook recebido:", JSON.stringify(req.body, null, 2));
 
     const mensagem = req.body.text?.message;
-    const numero = req.body.connectedPhone;
+    const numeroDes = req.body.connectedPhone;
+    const numero = req.body.phone;
     const messageId = req.body.messageId;
 
     if (!mensagem || !numero) {
@@ -82,7 +83,7 @@ app.post('/webhook', async (req, res) => {
 const instanceId = process.env.IDINSTANCE;
 const token = process.env.TOKEN;
 await axios.post(`https://api.z-api.io/instances/${instanceId}/token/${token}/send-message`, {
-  phone: numero,
+  phone: numeroDes,
   message: resposta,
   messageId: messageId
 });
