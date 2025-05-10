@@ -13,7 +13,7 @@ app.post('/webhook', async (req, res) => {
     console.log("Webhook recebido:", JSON.stringify(req.body, null, 2));
 
     const mensagem = req.body.text?.message;
-    const numero = req.body.phone;
+    const numero = req.body.connectedPhone;
     const messageId = req.body.messageId;
 
     if (!mensagem || !numero) {
@@ -81,13 +81,8 @@ app.post('/webhook', async (req, res) => {
     // Envia resposta para o cliente via Z-API
 const instanceId = process.env.IDINSTANCE;
 const token = process.env.TOKEN;
-// Adiciona o 9 após o DDD se o número for brasileiro
-let numeroCorrigido = numero;
-if (/^55\d{10}$/.test(numero)) {
-  numeroCorrigido = numero.slice(0, 4) + '9' + numero.slice(4);
-}
 await axios.post(`https://api.z-api.io/instances/${instanceId}/token/${token}/send-message`, {
-  phone: numeroCorrigido,
+  phone: numero,
   message: resposta,
   messageId: messageId
 });
